@@ -13,14 +13,14 @@ import static teststore.DriverFactory.getWebDriverWait;
 
 public class BaseClass {
 
-    WebDriver driver;
-    WebDriverWait wait;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
     @BeforeSuite
     public void startUpBrowser() {
         driver = getChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().window().fullscreen();
+        driver.manage().window().maximize();
         wait = getWebDriverWait();
     }
 
