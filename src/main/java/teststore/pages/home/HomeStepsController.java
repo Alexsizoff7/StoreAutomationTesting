@@ -6,15 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import teststore.pages.product.common.CommonProductActions;
 
 import java.util.List;
 
 import static teststore.DriverFactory.getChromeDriver;
 import static teststore.DriverFactory.getWebDriverWait;
 
-public class HomeStepsController {
+public class HomeStepsController extends CommonProductActions {
 
-    private WebDriver driver = getChromeDriver();
+    private final WebDriver driver = getChromeDriver();
 
     public void search(String value) {
         WebElement search = driver.findElement(By.xpath("//input[@aria-label=\"Search\"]"));
@@ -66,13 +67,5 @@ public class HomeStepsController {
         womenClothes.click();
     }
 
-    public List<WebElement> popularProductLinks() {
-        return driver.findElements(By.xpath("//h3[@class=\"h3 product-title\"]/a"));
-    }
 
-    public List<String> popularProducts() {
-        return popularProductLinks().stream()
-                .map(WebElement::getText)
-                .toList();
-    }
 }

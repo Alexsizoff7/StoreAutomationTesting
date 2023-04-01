@@ -1,4 +1,6 @@
 package teststore.pages.product;
 
-public class ClothesPage {
+import teststore.pages.product.common.CommonProductActions;
+
+public class ClothesPage extends CommonProductActions {
 }

@@ -14,6 +14,7 @@ public enum Size implements FilterType {
         this.value = value;
     }
 
+    @Override
     public Filter getFilterType() {
         return filter;
     }
