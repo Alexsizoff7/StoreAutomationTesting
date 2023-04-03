@@ -8,8 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import teststore.pages.product.common.CommonProductActions;
 
-import java.util.List;
-
 import static teststore.DriverFactory.getChromeDriver;
 import static teststore.DriverFactory.getWebDriverWait;
 

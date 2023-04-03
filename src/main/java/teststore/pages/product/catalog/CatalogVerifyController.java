@@ -1,4 +1,6 @@
 package teststore.pages.product.catalog;
 
-public class CatalogVerifyController {
+import teststore.pages.product.common.CommonProductVerifications;
+
+public class CatalogVerifyController extends CommonProductVerifications {
 }
