@@ -3,6 +3,7 @@ package teststore.ui.pages.product.common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import teststore.ui.pages.product.filter.Color;
 import teststore.ui.pages.product.filter.Dimension;
@@ -13,8 +14,7 @@ import teststore.ui.pages.product.sorting.SortBy;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 import static teststore.DriverFactory.getChromeDriver;
 import static teststore.DriverFactory.getWebDriverWait;
 
@@ -70,7 +70,7 @@ public class CommonProductVerifications {
     }
 
     public CommonProductVerifications sortingOrderIs(SortBy expectedSortingOption) {
-        WebElement sortByDropdown = driver.findElement(By.xpath("//button[@class=\"btn-unstyle select-title\"]"));
+        WebElement sortByDropdown = driver.findElement(By.xpath("//button[@class='btn-unstyle select-title']"));
         assertEquals(sortByDropdown.getText().replaceAll("[^A-Za-z,\s]", ""), expectedSortingOption.toString());
         return this;
     }
@@ -96,6 +96,31 @@ public class CommonProductVerifications {
         return this;
     }
 
+    // Product quick view modal window has all the same elements as cart modal window,
+    // except for footer block - it is unique for product modal
+    public CommonProductVerifications productQuickViewLoaded() {
+        String modalXpath = "//div[@class='modal-footer']";
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(modalXpath)));
+        assertTrue(driver.findElement(By.xpath(modalXpath)).isDisplayed());
+        return this;
+    }
+
+    public CommonProductVerifications productQuickViewClosed() {
+        assertFalse(driver.getPageSource().contains("modal-footer"));
+        return this;
+    }
+
+    public CommonProductVerifications cartModalLoaded() {
+        String cartModalXpath = "//div[@class='modal-dialog']//h4[text()='Product successfully added to your shopping cart']";
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(cartModalXpath)));
+        assertTrue(driver.findElement(By.xpath(cartModalXpath)).isDisplayed());
+        return this;
+    }
+
+    public CommonProductVerifications cartModalClosed() {
+        assertFalse(driver.findElement(By.xpath("//div[@id='blockcart-modal']")).isDisplayed());
+        return this;
+    }
 
 
     private List<WebElement> productLinks() {

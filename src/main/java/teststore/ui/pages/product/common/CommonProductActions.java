@@ -51,7 +51,7 @@ public class CommonProductActions {
         ac.moveToElement(openProductQuickView).perform();
         wait.until(ExpectedConditions.visibilityOf(openProductQuickView));
         openProductQuickView.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-content")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-footer")));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class CommonProductActions {
         return this;
     }
 
-    public void clickQuickViewColor(String productTitle, Color color) {
+    public void clickColorPreview(String productTitle, Color color) {
         WebElement openProductQuickView = driver.findElement(By.xpath("//article//h2/a[text()='" + productTitle
                 + "']/ancestor::div[@class='product-description']/following-sibling::div/a[@class='quick-view']"));
         Actions ac = new Actions(driver);
@@ -102,21 +102,32 @@ public class CommonProductActions {
         changeProductColorFromProductPreview.click();
     }
 
-    public void addToCartQuickView() {
+    public CommonProductActions closeProductQuickView() {
+        String closeButtonXpath = "//div[@class='modal-content']//button[@class='close']";
+        driver.findElement(By.xpath(closeButtonXpath)).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(closeButtonXpath))));
+        return this;
+    }
+
+    public CommonProductActions addToCartClickQuickView() {
         WebElement addToCartButton = driver.findElement(By.xpath("//button[@class=\"btn btn-primary add-to-cart\"]"));
         addToCartButton.click();
         cartModalWindowLoaded();
+        return this;
     }
 
-    public void cartModalDismiss() {
+    public CommonProductActions cartModalDismiss() {
         cartModalWindowLoaded();
-        WebElement continueShoppingButton = driver.findElement(By.className("btn btn-secondary"));
+        WebElement continueShoppingButton = driver.findElement(By.xpath("//button[@class='btn btn-secondary'][text()='Continue shopping']"));
         continueShoppingButton.click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='blockcart-modal']"))));
+        return this;
     }
 
     public void proceedToCheckout() {
         cartModalWindowLoaded();
-        WebElement proceedToCheckoutButton = driver.findElement(By.className("btn btn-primary"));
+        WebElement proceedToCheckoutButton = driver.findElement(By.xpath
+                ("//a[@href='//teststore.automationtesting.co.uk/cart?action=show'][@class='btn btn-primary']"));
         proceedToCheckoutButton.click();
     }
 

@@ -1,4 +1,4 @@
 package teststore.ui.pages.checkout;
 
-public class CartPage {
+public class OrderPage {
 }
