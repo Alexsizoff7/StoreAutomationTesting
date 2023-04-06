@@ -66,4 +66,8 @@ public class HomeStepsController extends CommonProductActions {
     }
 
 
+    public void clickCart() {
+        WebElement cart = driver.findElement(By.xpath("//a[@href=\"http://teststore.automationtesting.co.uk/cart?action=show\"]"));
+        cart.click();
+    }
 }

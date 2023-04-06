@@ -176,8 +176,8 @@ public class ProductQuickViewTest extends BaseClass {
                 .addToCartClickQuickView()
                 .proceedToCheckout();
 
-        String actualUrl = "http://teststore.automationtesting.co.uk/cart?action=show";
-        assertEquals(driver.getCurrentUrl(), actualUrl);
+        String expectedUrl = "http://teststore.automationtesting.co.uk/cart?action=show";
+        assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class ProductQuickViewTest extends BaseClass {
         catalog.steps()
                 .clickColorPreview("Hummingbird printed t-shirt", Color.BLACK);
 
-        String actualUrl = "http://teststore.automationtesting.co.uk/men/1-2-hummingbird-printed-t-shirt.html#/1-size-s/11-color-black";
-        assertEquals(driver.getCurrentUrl(), actualUrl);
+        String expectedUrl = "http://teststore.automationtesting.co.uk/men/1-2-hummingbird-printed-t-shirt.html#/1-size-s/11-color-black";
+        assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
 }

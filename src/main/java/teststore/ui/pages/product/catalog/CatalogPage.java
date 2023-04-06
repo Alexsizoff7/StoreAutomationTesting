@@ -17,7 +17,7 @@ public class CatalogPage {
         return verify;
     }
 
-    private WebDriver driver = getChromeDriver();
+    private final WebDriver driver = getChromeDriver();
 
     private CatalogPage() {
     }

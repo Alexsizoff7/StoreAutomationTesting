@@ -80,13 +80,13 @@ public class CatalogTest extends BaseClass {
     @Test
     public void defaultPage_verifyContainsProduct() {
         catalog.verify()
-                .pageContainsProduct("Mug The Best Is Yet To Come");
+                .pageContainsProduct("Mug The best is yet to come");
     }
 
     @Test
     public void defaultPage_verifyDoesNotContainProduct() {
         catalog.verify()
-                .pageDoesNotContainProduct("Customizable Mug");
+                .pageDoesNotContainProduct("Customizable mug");
     }
 
     @Test
@@ -95,11 +95,11 @@ public class CatalogTest extends BaseClass {
                 .changeSortingOrder(SortBy.NAME_A_TO_Z);
 
         catalog.verify()
-                .pageContainsProduct("Brown Bear - Vector Graphics")
-                .pageContainsProduct("Brown Bear Notebook")
-                .pageContainsProduct("Customizable Mug")
-                .pageContainsProduct("Hummingbird - Vector Graphics")
-                .pageContainsProduct("Hummingbird Notebook");
+                .pageContainsProduct("Brown bear - Vector graphics")
+                .pageContainsProduct("Brown bear notebook")
+                .pageContainsProduct("Customizable mug")
+                .pageContainsProduct("Hummingbird - Vector graphics")
+                .pageContainsProduct("Hummingbird notebook");
     }
 
     @Test

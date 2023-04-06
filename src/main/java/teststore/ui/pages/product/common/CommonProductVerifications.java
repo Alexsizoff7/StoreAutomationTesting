@@ -14,7 +14,9 @@ import teststore.ui.pages.product.sorting.SortBy;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 import static teststore.DriverFactory.getChromeDriver;
 import static teststore.DriverFactory.getWebDriverWait;
 
@@ -134,15 +136,15 @@ public class CommonProductVerifications {
     }
 
     private double getProductPrice(String productTitle) {
-        String str = driver.findElement(By.xpath("//article//h2/a[text()='" + productTitle
+        String price = driver.findElement(By.xpath("//article//h2/a[text()='" + productTitle
                 + "']/parent::h2/following-sibling::div/span[@class='price']")).getText();
-        return Double.parseDouble(str.replaceAll("[$]", ""));
+        return Double.parseDouble(price.replaceAll("[$]", ""));
     }
 
     private double getProductDiscountedPrice(String productTitle) {
-        String str = driver.findElement(By.xpath("//article//h2/a[text()='" + productTitle
+        String regularPrice = driver.findElement(By.xpath("//article//h2/a[text()='" + productTitle
                 + "']/parent::h2/following-sibling::div/span[@class='regular-price']")).getText();
-        return Double.parseDouble(str.replaceAll("[$]", ""));
+        return Double.parseDouble(regularPrice.replaceAll("[$]", ""));
     }
 
 }
